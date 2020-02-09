@@ -1,4 +1,6 @@
 node_modules/**
-**/.txt
-**/.html
+*.txt
+*.html
+.vscode/**
+launch.json
 package-lock.json
