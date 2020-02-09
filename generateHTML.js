@@ -25,7 +25,9 @@ const colors = {
   }
 };
 
-function generateHTML(data) {
+let generateHTML = function(data) {
+  // console.log(`\ngenerateHTML data: ${data}\n`);
+  let user = JSON.parse(data);
   return `<!DOCTYPE html>
 <html lang="en">
    <head>
@@ -52,7 +54,7 @@ function generateHTML(data) {
          height: 100%;
          }
          .wrapper {
-         background-color: ${colors[data.color].wrapperBackground};
+         background-color: ${colors[user.color].wrapperBackground};
          padding-top: 100px;
          }
          body {
@@ -94,8 +96,8 @@ function generateHTML(data) {
          display: flex;
          justify-content: center;
          flex-wrap: wrap;
-         background-color: ${colors[data.color].headerBackground};
-         color: ${colors[data.color].headerColor};
+         background-color: ${colors[user.color].headerBackground};
+         color: ${colors[user.color].headerColor};
          padding: 10px;
          width: 95%;
          border-radius: 6px;
@@ -106,7 +108,7 @@ function generateHTML(data) {
          border-radius: 50%;
          object-fit: cover;
          margin-top: -75px;
-         border: 6px solid ${colors[data.color].photoBorderColor};
+         border: 6px solid ${colors[user.color].photoBorderColor};
          box-shadow: rgba(0, 0, 0, 0.3) 4px 1px 20px 4px;
          }
          .photo-header h1, .photo-header h2 {
@@ -122,10 +124,17 @@ function generateHTML(data) {
          padding: 20px 0;
          font-size: 1.1em;
          }
-         .nav-link {
-         display: inline-block;
-         margin: 5px 10px;
-         }
+         li {
+          display: inline-block;
+          margin: 5px 10px;
+          }
+          /* fixed added 40px on left */
+          ul {
+            padding: 0;
+          }
+          h3.bio {
+            padding: 45px 0px 25px 0px;
+          }
          .workExp-date {
          font-style: italic;
          font-size: .7em;
@@ -149,8 +158,8 @@ function generateHTML(data) {
          .card {
            padding: 20px;
            border-radius: 6px;
-           background-color: ${colors[data.color].headerBackground};
-           color: ${colors[data.color].headerColor};
+           background-color: ${colors[user.color].headerBackground};
+           color: ${colors[user.color].headerColor};
            margin: 20px;
          }
          
@@ -170,7 +179,80 @@ function generateHTML(data) {
             zoom: .75; 
           } 
          }
-      </style>`
+      </style>
+      
+      </head>
+      <body>
+      <div class="wrapper">
+      <div class="photo-header">
+        <img src="${user.avatar}"
+      </div>
+      <h1>Hi!</h1>
+      <h2 class="name">My name is ${user.name}</h2>
+      <div class="links-nav">
+        <ul>
+          <li>
+            <a class="location" href="https://www.google.com/maps/place/${user.location}">
+              <i class="fas fa-location-arrow"></i>
+              <h6>${user.location}</h6>
+            </a>
+          <li>
+            <a href="${user.profile}">
+              <i class="fab fa-github"></i>
+              <h6>Github</h6>
+            </a>
+          </li>
+          <li>
+            <a class="blog" href="${user.blog}">
+              <i class="fas fa-rss-square"></i>
+              <h6 href="">Blog</h6>
+            </a>
+          </li>
+        </ul>
+        </div>
+      </div>
+    <main>
+      <div class="row">
+        <div class="col">
+          <h3 class="bio">${user.bio}</h3>
+        </div>
+      </div>
+      
+      <div class="row">
+        <div class="col">
+          <div class="card">
+            <h3>Public Repositories</h3>
+            <h6>${user.repoCount}</h6>  
+          </div>
+        </div>
+        <div class="col">
+          <div class="card">
+            <h3>Following</h3>
+            <h6>${user.followers}</h6>  
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <div class="card">
+            <h3>Github Stars</h3>
+            <h6>25</h6>  
+          </div>
+        </div>
+        <div class="col">
+          <div class="card">
+            <h3>Followers</h3>
+            <h6>${user.followedUsers}</h6>  
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>`
         }
+
+function createHtmlContent() {
+  
+}
 
 module.exports = generateHTML;
