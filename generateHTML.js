@@ -1,7 +1,3 @@
-const inquirer = require('inquirer');
-
-inquirer.prompt([questions]);
-
 const colors = {
   green: {
     wrapperBackground: "#E6E1C3",
@@ -176,3 +172,5 @@ function generateHTML(data) {
          }
       </style>`
         }
+
+module.exports = generateHTML;
