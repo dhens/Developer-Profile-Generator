@@ -18,32 +18,36 @@ const questions =
     ];
 
 function fetchGithubData(username) {
-    const queryUrl = `https://api.github.com/users/${username}/repos?per_page=10`;
-    const repoArr = []
+    // fetch REPOs and get repo length
+    var queryUrl = `https://api.github.com/users/${username}`;
     axios
     .get(queryUrl)
     .then((response) => {
-      const repoArr = [];
-      response.data.forEach(repo => {
-        repoArr.push(repo.name)
-        });
-        const repoString = repoArr.join("\n");
-        fs.writeFile(`${username}.txt`, repoString, function(err) {
-          if(err) {
-            throw err;
-          }
-          console.log("Sucessfully wrote repo data to repos.txt")
-      });
-    })
+        let data = response.data;
+        let user = {
+            username: data.login,
+            avatar: data.avatar_url,
+            profile: data.url,
+            blog: data.blog,
+            repoCount: data.public_repos,
+            name: data.name,
+            followers: data.followers,
+            followedUsers: data.following,
+        }
+        console.log(user)
+
+    writeToFile(user.username, user);
+    });
 }
 
 function writeToFile(fileName, data) {
-    fs.writeFile(fileName, data, function(err, data) {
+    let stringData = JSON.stringify(data);
+    fs.writeFile(`${fileName}.txt`, stringData, function(err, data) {
         if (err) {
             return console.log(err)
         }
 
-        console.log(`Successfully wrote profile data to ${data}.txt`)
+        console.log(`Successfully wrote profile data to ${fileName}.txt`)
     });
 }
 
@@ -51,10 +55,9 @@ function writeToFile(fileName, data) {
 
 function init() {
     inquirer.prompt(questions)
-        .then(function(responses) {
-            console.log(responses);
-            fetchGithubData(responses.username)
-        })
+    .then(function(responses) {
+        console.log(responses);
+        fetchGithubData(responses.username)
+    })
 }
-
 init();
