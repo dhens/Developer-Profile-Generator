@@ -26,7 +26,7 @@ const colors = {
 };
 
 let generateHTML = function(data) {
-  // console.log(`\ngenerateHTML data: ${data}\n`);
+  console.log(`\ngenerateHTML data: ${data}\n`);
   let user = JSON.parse(data);
   return `<!DOCTYPE html>
 <html lang="en">
@@ -130,7 +130,7 @@ let generateHTML = function(data) {
           }
           /* fixed added 40px on left */
           ul {
-            padding: 0;
+            padding: 0px;
           }
           h3.bio {
             padding: 45px 0px 25px 0px;
@@ -188,7 +188,7 @@ let generateHTML = function(data) {
         <img src="${user.avatar}"
       </div>
       <h1>Hi!</h1>
-      <h2 class="name">My name is ${user.name}</h2>
+      <h2 class="name">My name is ${user.name}!</h2>
       <div class="links-nav">
         <ul>
           <li>
@@ -203,7 +203,7 @@ let generateHTML = function(data) {
             </a>
           </li>
           <li>
-            <a class="blog" href="${user.blog}">
+            <a class="blog" href="https://${user.blog}">
               <i class="fas fa-rss-square"></i>
               <h6 href="">Blog</h6>
             </a>
@@ -237,7 +237,7 @@ let generateHTML = function(data) {
         <div class="col">
           <div class="card">
             <h3>Github Stars</h3>
-            <h6>25</h6>  
+            <h6>${user.starCount}</h6>  
           </div>
         </div>
         <div class="col">

@@ -16,18 +16,16 @@ const questions =
         }
     ];
 
-function fetchGithubData(username, color) {
-    // fetch REPOs and get repo length
+function fetchGithubData(username, color, starCount) {
     const queryUrl = `https://api.github.com/users/${username}`;
     axios
     .get(queryUrl)
     .then((response) => {
         const data = response.data;
-        console.log(data);
         user = {
             username: data.login,
             avatar: data.avatar_url,
-            profile: data.url,
+            profile: data.html_url,
             blog: data.blog,
             repoCount: data.public_repos,
             name: data.name,
@@ -35,10 +33,19 @@ function fetchGithubData(username, color) {
             followedUsers: data.following,
             bio: data.bio,
             location: data.location,
+            starCount,
             color
         }
         writeToFile(user.username, JSON.stringify(user));
-        return user;
+    });
+}
+
+function fetchStarData(username) {
+    const queryUrl = `https://api.github.com/users/${username}/starred`;
+    axios
+    .get(queryUrl)
+    .then((response) => {
+        let starCount = response.data.length;
     });
 }
 
@@ -54,7 +61,8 @@ function writeToFile(fileName, userData) {
 function init() {
     inquirer.prompt(questions)
     .then(function(responses) {
+        fetchStarData(responses.username);
         fetchGithubData(responses.username, responses.color)
-    })
+    });
 }
 init();
