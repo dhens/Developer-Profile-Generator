@@ -1,7 +1,7 @@
 const inquirer = require('inquirer');
 const fs = require('fs');
 const axios = require("axios");
-const generateHTML = require('./generateHTML.js')
+const generateHTML = require('./generateHTML.js');
 const questions =
     [
         {
@@ -17,12 +17,13 @@ const questions =
     ];
 
 function fetchGithubData(username, color, starCount) {
+    console.log(`fetchGitHub starCOunt value: ${starCount}`);
     const queryUrl = `https://api.github.com/users/${username}`;
     axios
     .get(queryUrl)
     .then((response) => {
         const data = response.data;
-        user = {
+        let user = {
             username: data.login,
             avatar: data.avatar_url,
             profile: data.html_url,
@@ -35,22 +36,23 @@ function fetchGithubData(username, color, starCount) {
             location: data.location,
             starCount,
             color
-        }
-        writeToFile(user.username, JSON.stringify(user));
+        }    
+        writeToFile(user.username, JSON.stringify(user), starCount);
     });
 }
 
 function fetchStarData(username) {
     const queryUrl = `https://api.github.com/users/${username}/starred`;
-    axios
+    return axios
     .get(queryUrl)
     .then((response) => {
-        let starCount = response.data.length;
+        console.log(`End of fetchStarData: ${response.data.length}`);
+        return response.data.length;
     });
 }
 
-function writeToFile(fileName, userData) {
-    fs.writeFile(`${fileName}.html`, generateHTML(userData), function(err, data) {
+function writeToFile(fileName, userData, starCount) {
+    fs.writeFile(`${fileName}.html`, generateHTML(userData, starCount), function(err, data) {
         if (err) {
             return console.log(`Error writing to file! \n${err}`);
         }
@@ -61,8 +63,10 @@ function writeToFile(fileName, userData) {
 function init() {
     inquirer.prompt(questions)
     .then(function(responses) {
-        fetchStarData(responses.username);
-        fetchGithubData(responses.username, responses.color)
+        fetchStarData(responses.username).then(function(starCount) {
+            console.log(`fetchStarData value in init function: ${starCount}`);
+            fetchGithubData(responses.username, responses.color, starCount)    
+        });
     });
 }
 init();

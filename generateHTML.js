@@ -25,8 +25,8 @@ const colors = {
   }
 };
 
-let generateHTML = function(data) {
-  console.log(`\ngenerateHTML data: ${data}\n`);
+let generateHTML = function(data, starCount) {
+  // console.log(`\ngenerateHTML data: \n${data}\nStarcount: ${starCount}`);
   let user = JSON.parse(data);
   return `<!DOCTYPE html>
 <html lang="en">
@@ -203,7 +203,7 @@ let generateHTML = function(data) {
             </a>
           </li>
           <li>
-            <a class="blog" href="https://${user.blog}">
+            <a class="blog" href="${user.blog}">
               <i class="fas fa-rss-square"></i>
               <h6 href="">Blog</h6>
             </a>
@@ -227,7 +227,7 @@ let generateHTML = function(data) {
         </div>
         <div class="col">
           <div class="card">
-            <h3>Following</h3>
+            <h3>Followers</h3>
             <h6>${user.followers}</h6>  
           </div>
         </div>
@@ -242,7 +242,7 @@ let generateHTML = function(data) {
         </div>
         <div class="col">
           <div class="card">
-            <h3>Followers</h3>
+            <h3>Following</h3>
             <h6>${user.followedUsers}</h6>  
           </div>
         </div>
