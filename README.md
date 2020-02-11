@@ -1,6 +1,6 @@
 # Developer-Profile-Generator
 
-Build a GitHub user profile PDF generator from user input.
+Build a GitHub profile PDF generator from user input.
 
 ![profileGenPage](https://raw.githubusercontent.com/dhens/Developer-Profile-Generator/master/pic/productionPage.PNG)
 
