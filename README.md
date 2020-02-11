@@ -12,6 +12,7 @@ Build a GitHub user profile PDF generator from user input.
 ## This repo contains:
 * This README
 * An index.js file that takes user input, passes the responses to a function that gets the GitHub user info, then passes that information to the next file, generateHTML.js, which parses the data and fills in the html, passes the data back to index, and then converts that to an html, then a pdf file, and saves it to the local directory.
+* package.json and package-lock.json
 
 ## Known Issues / Bugs
 * I'd like to take the HTML and immediately convert it to a PDF without saving an html file in the first place. This isn't a functional problem, but would make the program more lean.
