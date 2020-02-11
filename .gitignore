@@ -1,6 +1,4 @@
-node_modules/**
-*.txt
-*.html
-.vscode/**
-launch.json
-package-lock.json
+*
+!*.json
+!*.md
+!/pic

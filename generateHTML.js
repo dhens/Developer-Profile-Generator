@@ -26,7 +26,6 @@ const colors = {
 };
 
 let generateHTML = function(data, starCount) {
-  // console.log(`\ngenerateHTML data: \n${data}\nStarcount: ${starCount}`);
   let user = JSON.parse(data);
   return `<!DOCTYPE html>
 <html lang="en">

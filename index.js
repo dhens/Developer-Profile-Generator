@@ -1,6 +1,7 @@
 const inquirer = require('inquirer');
 const fs = require('fs');
 const axios = require("axios");
+const makePDF = require('pdf-puppeteer')
 const generateHTML = require('./generateHTML.js');
 const questions =
     [
@@ -46,13 +47,20 @@ function fetchStarData(username) {
     return axios
     .get(queryUrl)
     .then((response) => {
-        console.log(`End of fetchStarData: ${response.data.length}`);
         return response.data.length;
     });
 }
 
 function writeToFile(fileName, userData, starCount) {
-    fs.writeFile(`${fileName}.html`, generateHTML(userData, starCount), function(err, data) {
+    fs.writeFile(`${fileName}.html`, makePDF(generateHTML(userData, starCount), function(pdf) {
+        fs.writeFile(`${fileName}.pdf`, pdf, function(err, data) {
+            if (err) {
+                return console.log(err);
+            }
+            console.log(`Successfully wrote ${fileName}.pdf`)
+        })
+    }), 
+    function(err, data) {
         if (err) {
             return console.log(`Error writing to file! \n${err}`);
         }
@@ -64,8 +72,7 @@ function init() {
     inquirer.prompt(questions)
     .then(function(responses) {
         fetchStarData(responses.username).then(function(starCount) {
-            console.log(`fetchStarData value in init function: ${starCount}`);
-            fetchGithubData(responses.username, responses.color, starCount)    
+            fetchGithubData(responses.username, responses.color, starCount)
         });
     });
 }
