@@ -188,6 +188,7 @@ let generateHTML = function(data, starCount) {
       </div>
       <h1>Hi!</h1>
       <h2 class="name">My name is ${user.name}!</h2>
+      <h6>@${user.username}</h6>
       <div class="links-nav">
         <ul>
           <li>

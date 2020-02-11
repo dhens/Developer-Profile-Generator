@@ -18,7 +18,6 @@ const questions =
     ];
 
 function fetchGithubData(username, color, starCount) {
-    console.log(`fetchGitHub starCOunt value: ${starCount}`);
     const queryUrl = `https://api.github.com/users/${username}`;
     axios
     .get(queryUrl)
@@ -57,7 +56,7 @@ function writeToFile(fileName, userData, starCount) {
             if (err) {
                 return console.log(err);
             }
-            console.log(`Successfully wrote ${fileName}.pdf`)
+            console.log(`Successfully wrote pdf data to ${fileName}.pdf`)
         })
     }), 
     function(err, data) {
