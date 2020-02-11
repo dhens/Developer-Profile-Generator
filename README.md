@@ -27,4 +27,4 @@ Build a GitHub user profile PDF generator from user input.
 * [pdf-puppeteer 1.1.10](https://www.npmjs.com/package/pdf-puppeteer)
 
 ## Conclusion:
-My ability to complete complex coding tasks is becoming significantly better. Testing first, coding second, needs to be a higher priority, however, as not doin that added a lot of time that could have been avoided.
+My ability to complete complex coding tasks is becoming significantly stronger. Testing first, coding second, needs to be a higher priority, however, as not doin that added a lot of time that could have been avoided.
