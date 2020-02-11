@@ -19,8 +19,8 @@ Production page:
 ## What I Learned:
 
 ## Dependencies:
-* Axios 0.19.2(https://www.npmjs.com/package/axios)
-* Inquirer 7.0.4(https://www.npmjs.com/package/inquirer)
-* pdf-puppeteer 1.1.10(https://www.npmjs.com/package/pdf-puppeteer)
+* [Axios 0.19.2](https://www.npmjs.com/package/axios)
+* [Inquirer 7.0.4](https://www.npmjs.com/package/inquirer)
+* [pdf-puppeteer 1.1.10](https://www.npmjs.com/package/pdf-puppeteer)
 
 ## Conclusion:
