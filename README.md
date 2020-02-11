@@ -8,8 +8,8 @@ Production page:
 
 ## Installation instructions:
 1. Clone repo to your local machine
-2. run npm install in the directory of the cloned repo
-3. run index.js and follow the prompts
+2. Run "npm install" in the directory of the cloned repo
+3. run "node index.js" and follow the prompts
 
 ## This repo contains:
 * This README
