@@ -2,6 +2,8 @@
 
 Build a GitHub profile PDF generator from user input.
 
+![profileGenGif](ezgif-7-358a0a2acc3b.gif)
+
 ![profileGenPage](https://raw.githubusercontent.com/dhens/Developer-Profile-Generator/master/pic/productionPage.PNG)
 
 ## Installation instructions:
